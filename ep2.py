@@ -11,11 +11,35 @@ def padroniza(resposta):
 	resposta = resposta.title()
 	return resposta
 
-def batalha(inspermonatacante, inspermondefensor):
+def batalha(inspermon1, inspermon2):
 	Insperdex = {"Techmon" : {"Ataque" : 170, "Defesa": 50, "PV" : 120}, "Weirdomon" : {"Ataque" : 140, "Defesa": 80, "PV" : 110}, "Pythonbat": {"Ataque": 160, "Defesa" : 60, "PV":140}, "Poliswag": {"Ataque" : 175, "Defesa": 40, "PV" : 120}, "Charmano":{"Ataque":150, "Defesa":60, "PV":180}}
-	dano = Insperdex[inspermonatacante]["Ataque"] - Insperdex[inspermondefensor]["Defesa"]
-	resultado = Insperdex[inspermondefensor]["PV"] - dano
-	return resultado
+	resultado1 = Insperdex[inspermon2]["PV"]
+	resultado2 = Insperdex[inspermon1]["PV"]
+	while True:
+		dano1 = Insperdex[inspermon1]["Ataque"] - Insperdex[inspermon2]["Defesa"]
+		dano2 = Insperdex[inspermon2]["Ataque"] - Insperdex[inspermon1]["Defesa"]
+		resultado1 = resultado1 - dano1
+		resultado2 = resultado2 - dano2
+		print("É sua vez de atacar, concentre-se!")
+		atacar = input("Para atacar digite ataque:") #adicionar opção com x% de chance de desistir da batalha no meio da luta.
+		atacar = padroniza(atacar)
+		if atacar == "Ataque":
+			print("Seu Inspermon está atacando")
+			time.sleep(2)
+			print("Os pontos de vida de seu inimigo foram de {0} para {1}".format(Insperdex[monaparece]["PV"], resultado1))
+			if resultado1 <= 0:
+				print("{0} desmaiou, {1} é o vencedor da batalha!".format(inspermon2, inspermon1))
+				break
+		time.sleep(2)
+		print("Agora seu inimigo atacará, se prepare!")
+		time.sleep(2)
+		print("...")
+		time.sleep(1)
+		print("Seus pontos de vida foram de {0} para {1}".format(Insperdex[inspermon1]["PV"], resultado2))
+		if resultado2 <= 0:
+			print ("Seu inspermon desmaiou, que pena... Cure-o em um centro Inspermon mais proximo e tente novamente")
+			break
+	
 
 #ecolhendo seu inspermon inicial
 inspermon_inicial = input("qual será seu pokemon inicial, Techmon, Weirdomon, Pythonbat, Poliswag ou Charmano? ")
@@ -33,7 +57,7 @@ while True:
 		time.sleep (2)
 		monaparece = random.choice(listainspermon)#definindo qual inspermon aparecerá
 		if monaparece in Insperdex.keys():
-			print("A wild {0} aparece".format(monaparece))
+			print("A wild {0} aparece, seus atributos são {1}".format(monaparece, Insperdex[monaparece]))
 			atributos = Insperdex[monaparece]
 			ação = input("O que você quer fazer, batalhar ou fugir? ")
 			ação = padroniza(ação)
@@ -42,20 +66,6 @@ while True:
 		break
 	if ação == "Batalhar":
 		print("Iniciando batalha, may God have mercy on your soul")
-		print("O primeiro no ataque é {0}".format(inspermon_inicial))
-		while True:
-			atacar = input("Para atacar digite ataque:") #adicionar opção com x% de chance de desistir da batalha no meio da luta.
-			atacar = padroniza(atacar)
-			if atacar == "Ataque":
-				print("Os pontos de vida de seu inimigo foram de {0} para {1}".format(Insperdex[monaparece]["PV"], batalha(inspermon_inicial, monaparece)))
-				time.sleep(3)
-				if Insperdex[monaparece]["PV"] < 0: #inimigo morreu, batalhar acaba
-					print ("Parabens, você derrotou seu inimigo!")
-					break
-				if Insperdex[monaparece]["PV"] > 0: #inimigo vivo, batalha continua
-					print("agora é vez de seu inimigo atacar, se prepare")
-					time.sleep (2)
-					print("Os seus pontos de vida foram de {0} para {1} ".format(Insperdex[inspermon_inicial]["PV"], batalha(monaparece, inspermon_inicial)))
-				if Insperdex[inspermon_inicial]["PV"] < 0:
-					print ("Você foi derrotado!")
+		print(batalha(inspermon_inicial, monaparece))
+		
 			
