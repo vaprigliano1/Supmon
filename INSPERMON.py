@@ -1,6 +1,14 @@
 import random
 import time
 
+#definindo a classe Inspermon
+class Inspermon():
+	def __init__(self, ataque, defesa, velocidade, vida):
+		self.a = ataque
+		self.d = defesa
+		self.v = velocidade
+		self.pv = vida
+
 Insperdex = {"Techmon" : {"Ataque" : 170, "Defesa": 50, "PV" : 120}, "Weirdomon" : {"Ataque" : 140, "Defesa": 80, "PV" : 110}, "Pythonbat": {"Ataque": 160, "Defesa" : 60, "PV":140}, "Poliswag": {"Ataque" : 175, "Defesa": 40, "PV" : 120}, "Charmano":{"Ataque":150, "Defesa":60, "PV":180}}
 listainspermon = ["Techmon", "Weirdomon","Pythonbat","Poliswag","Charmano"]
 
@@ -8,12 +16,12 @@ listainspermon = ["Techmon", "Weirdomon","Pythonbat","Poliswag","Charmano"]
 
 #definindo a função que padronizará a resposta
 def padroniza(resposta):
+	resposta = resposta.strip(" ")
 	resposta = resposta.lower()
 	resposta = resposta.title()
 	return resposta
 
 def batalha(inspermon1, inspermon2):
-	Insperdex = {"Techmon" : {"Ataque" : 170, "Defesa": 50, "PV" : 120}, "Weirdomon" : {"Ataque" : 140, "Defesa": 80, "PV" : 110}, "Pythonbat": {"Ataque": 160, "Defesa" : 60, "PV":140}, "Poliswag": {"Ataque" : 175, "Defesa": 40, "PV" : 120}, "Charmano":{"Ataque":150, "Defesa":60, "PV":180}}
 	resultado1 = Insperdex[inspermon2]["PV"]
 	resultado2 = Insperdex[inspermon1]["PV"]
 	while True:
@@ -40,14 +48,22 @@ def batalha(inspermon1, inspermon2):
 		if resultado2 <= 0:
 			print ("Seu inspermon desmaiou, que pena... Cure-o em um centro Inspermon mais proximo e tente novamente")
 			break
+
+#apresentando o mundo de inspermun
+print ("Bem vindo ao mundo de Inspermon, um mundo cheio de inspermons desesperados por notas(te destruir)")
+time.sleep(1)
+nome_do_jogador = input("Parabéns por iniciar sua aventura, qual é o seu nome?")
+padroniza(nome_do_jogador)
+time.sleep(1)
 	
 
 #ecolhendo seu inspermon inicial
 inspermon_inicial = input("qual será seu pokemon inicial, Techmon, Weirdomon, Pythonbat, Poliswag ou Charmano? ")
 inspermon_inicial = padroniza(inspermon_inicial)
 if inspermon_inicial in Insperdex:
-	print("parabéns {0} é uma boa escolha".format(inspermon_inicial))
+	print("parabéns {0}, {1} é uma boa escolha".format(nome_do_jogador, inspermon_inicial))
 
+#iniciando a aventura
 while True:
 	inicio = input("o que você vai fazer, passear ou dormir? ")
 	inicio = padroniza(inicio)
