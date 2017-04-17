@@ -29,16 +29,27 @@ def batalha(inspermon1, inspermon2):
 		dano2 = Insperdex[inspermon2]["Ataque"] - Insperdex[inspermon1]["Defesa"]
 		resultado1 = resultado1 - dano1
 		resultado2 = resultado2 - dano2
-		print("É sua vez de atacar, concentre-se!")
-		atacar = input("Para atacar digite 'ataque':") #adicionar opção com x% de chance de desistir da batalha no meio da luta.
-		atacar = padroniza(atacar)
-		if atacar == "Ataque":
+		print("É sua vez de atacar, quer continuar ou prefere desistir da batalha?")
+		ação = input("Para atacar digite 'ataque', para fugir digite 'fuga':") 
+		ação = padroniza(ação)
+		if ação == "Ataque":
 			print("Seu Inspermon está atacando")
 			time.sleep(2)
 			print("Os pontos de vida de seu inimigo foram de {0} para {1}".format(Insperdex[monaparece]["PV"], resultado1))
 			if resultado1 <= 0:
 				print("{0} desmaiou, {1} é o vencedor da batalha!".format(inspermon2, inspermon1))
 				break
+		if ação == "Fuga":
+			print ("OK! Vamos tentar fugir...")
+			time.sleep (2)
+			desistencia = ["1","2","3"] #PROBABILIDADE DE FUGIR DA BATALHA.
+			probD = random.choice(desistencia)
+			if probD == 1 or 2 :
+				print("Fugiu com exito!")
+			break
+			if probD == 3 :
+				print ("Você não conseguiu fugir, vamos continuar a batalha!")
+				print (batalha(inspermon_inicial, monaparece))
 		time.sleep(2)
 		print("Agora seu inimigo atacará, se prepare!")
 		time.sleep(2)
@@ -48,9 +59,10 @@ def batalha(inspermon1, inspermon2):
 		if resultado2 <= 0:
 			print ("Seu inspermon desmaiou, que pena... Cure-o em um centro Inspermon mais proximo e tente novamente")
 			break
+		
 
 #apresentando o mundo de inspermun
-print ("Bem vindo ao mundo de Inspermon, um mundo cheio de inspermons desesperados por notas(te destruir)")
+print ("Bem vindo ao mundo de Inspermon, um mundo cheio de Inspermons a serem descobertos")
 time.sleep(1)
 nome_do_jogador = input("Parabéns por iniciar sua aventura, qual é o seu nome?")
 padroniza(nome_do_jogador)
