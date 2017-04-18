@@ -1,6 +1,6 @@
 import random
 import time
-from funcoes import *
+from funcoes_e_classes import *
 
 #criando o dicionário que virará sua Insperdex
 Insperdex = {}
@@ -17,7 +17,7 @@ Charmano = Inspermon("Charmano", 150, 60, 180)
 bd = {"Techmon": Techmon, "Weirdomon": Weirdomon, "Pythonbat": Pythonbat, "Poliswag": Poliswag, "Charmano": Charmano}
 
 #apresentando o mundo de inspermun
-print ("Bem vindo ao mundo de Inspermon, um mundo cheio de criaturas misteriosas, tome cuidado! nem todas são doceis")
+print ("Bem vindo ao mundo de Inspermon, um mundo cheio de inspermons que desejam seu fim")
 time.sleep(1)
 nome_do_jogador = input("Parabéns por iniciar sua aventura, qual é o seu nome? ")
 nome_do_jogador = padroniza(nome_do_jogador)
@@ -28,12 +28,12 @@ time.sleep(1)
 inspermon_inicial = input("Olá {0}! qual será seu pokemon inicial, Techmon, Weirdomon, Pythonbat, Poliswag ou Charmano? ".format(nome_do_jogador))
 inspermon_inicial = padroniza(inspermon_inicial)
 if inspermon_inicial in bd.keys():
-	print("parabéns {0}, {1} é uma boa escolha! O Universo Inspermon te deseja sorte!".format(nome_do_jogador, inspermon_inicial))
+	print("parabéns {0}, {1} é uma boa escolha!".format(nome_do_jogador, inspermon_inicial))
 	Insperdex[inspermon_inicial] = {"Ataque": bd[inspermon_inicial].a, "Defesa": bd[inspermon_inicial].d, "Pontos de vida": bd[inspermon_inicial].pv}
 
 #iniciando a aventura
 while True:
-	inicio = input("{0} o que você e seu inspermon desejam fazer? passear, dormir ou ver sua Insperdex?".format(nome_do_jogador))
+	inicio = input("o que você vai fazer, passear, dormir ou ver sua Insperdex? ")
 	inicio = padroniza(inicio)
 	if inicio == "Insperdex":
 		print (Insperdex)
@@ -47,7 +47,7 @@ while True:
 		#definindo qual inspermon aparecerá
 		inspermon_aparece = random.choice(list(bd.keys()))
 		if inspermon_aparece in bd.keys():
-			print("Um {0} apareceu, segundo a Insperdex seus atributos são: ataque {1}, defesa {2} e pontos de vida {3}, enquanto os de seu inspermon sâo ataque {4}, defesa {5}, pontos de vida {6}".format(inspermon_aparece, bd[inspermon_aparece].a, bd[inspermon_aparece].d, bd[inspermon_aparece].pv, bd[inspermon_inicial].a, bd[inspermon_inicial].d, bd[inspermon_inicial].pv))
+			print("Um {0} apareceu, segundo a Insperdex seus atributos são: ataque :{1}, defesa :{2} e pontos de vida :{3}, enquanto os de seu inspermon sâo ataque :{4}, defesa :{5}, pontos de vida :{6}".format(inspermon_aparece, bd[inspermon_aparece].a, bd[inspermon_aparece].d, bd[inspermon_aparece].pv, bd[inspermon_inicial].a, bd[inspermon_inicial].d, bd[inspermon_inicial].pv))
 			time.sleep(1)
 			if inspermon_aparece not in Insperdex.keys():
 				print("{0} foi adicionado a sua Insperdex".format(inspermon_aparece))
@@ -59,7 +59,7 @@ while True:
 			probD = random.randint(0, 5)
 			if probD in range(0, 3):
 				print("Fugiu com exito!")
-				break
+				pass
 			else:
 				print ("Você não conseguiu fugir, vamos batalhar!")
 				print (batalha(inspermon_inicial, monaparece, bd))
