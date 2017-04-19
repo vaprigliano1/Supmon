@@ -27,7 +27,7 @@ def batalha(inspermon1, inspermon2, bd):
 	resultado2 = [bd[inspermon1].pv]
 	for i in range (1, 1000):
 		print("É o seu turno, concentre-se!")
-		ação = input("Para atacar digite 'ataque', mas se você quer tentar fugir, digite 'fuja'")
+		ação = input("Para atacar digite :'ataque', mas se você quer tentar fugir, digite :'fugir'")
 		ação = padroniza(ação)	
 		dano1 = bd[inspermon1].a - bd[inspermon2].d
 		dano2 = bd[inspermon2].a - bd[inspermon1].d
@@ -35,6 +35,7 @@ def batalha(inspermon1, inspermon2, bd):
 			resultado1 = resultado1 + [resultado1[i-1] - dano1]
 			resultado2 = resultado2 + [resultado2[i-1] - dano2]
 			print("Seu Inspermon está atacando")
+			print ("...")
 			time.sleep(2)
 			if resultado1[i] > 0:
 				print("Os pontos de vida de seu inimigo foram de {0} para {1}".format(resultado1[i-1], resultado1[i]))
