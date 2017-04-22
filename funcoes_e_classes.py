@@ -72,7 +72,7 @@ def batalha(inspermon1, inspermon2, bd, experiencia_atual):
 			print ("Seu inspermon tentará fugir!")
 			time.sleep (2)
 			probD = random.randint(0, 5)
-			if probD in range(0, 5):
+			if probD in range(0, 3):
 				print("Ele conseguiu!")
 				return experiencia_atual
 			else:

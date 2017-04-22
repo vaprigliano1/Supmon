@@ -94,7 +94,7 @@ while True:
 			if ação == "Fugir":
 				#adicionando probabilidade de fuga no início da batalha
 				probD = random.randint(0, 5)
-				if probD in range(0, 5):
+				if probD in range(0, 3):
 					print("Fugiu com êxito!")
 					break
 				else:
