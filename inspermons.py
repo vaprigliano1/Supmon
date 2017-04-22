@@ -1,4 +1,26 @@
 from funcoes_e_classes import *
+from tkinter import *
+from PIL import Image, ImageTk
+import tkinter as tk
+
+#adicionando a interface gráfica
+def Play():
+    window.destroy()
+    
+window = tk.Tk()
+window.title ("Inspermon")
+window.geometry("700x600+500+500")
+pokebola = 'pokebola.gif'
+img = ImageTk.PhotoImage(Image.open(pokebola))
+foto = tk.Label(window, image = img)
+foto.pack(side = "top", fill = "both", expand = "yes")
+texto = tk.Label(window, text = "Bem vindo ao jogo Inspermon!")
+texto.pack()
+botão = tk.Button(window)
+botão.configure (text = "Vamos Jogar!")
+botão.configure (command = Play)
+botão.pack(side = tk.BOTTOM )
+window.mainloop()
 
 #criando os inspermons e suas evoluções
 Techmon = Inspermon(170, 50, 120, 10)
