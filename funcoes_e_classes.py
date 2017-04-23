@@ -1,6 +1,9 @@
 import random
 import time
 import pickle
+from tkinter import *
+from PIL import Image, ImageTk
+import tkinter as tk
 
 respostasesperadas = ["Fuja", "Ataque"]
 
@@ -114,3 +117,22 @@ def LoadGame(nome_do_save):
 	crt = open(nome_do_save + "3.txt", "r")
 	experiencia = crt.readlines(1)
 	return dic, inspermon_inicial, experiencia
+
+#adicionando a interface gráfica
+def Play():
+    window.destroy()
+    
+window = tk.Tk()
+window.title ("Inspermon")
+window.geometry("700x600+500+500")
+pokebola = 'pokebola.gif'
+img = ImageTk.PhotoImage(Image.open(pokebola))
+foto = tk.Label(window, image = img)
+foto.pack(side = "top", fill = "both", expand = "yes")
+texto = tk.Label(window, text = "Bem vindo ao jogo Inspermon!")
+texto.pack()
+botão = tk.Button(window)
+botão.configure (text = "Vamos Jogar!")
+botão.configure (command = Play)
+botão.pack(side = tk.BOTTOM )
+window.mainloop()

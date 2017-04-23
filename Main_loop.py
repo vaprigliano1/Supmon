@@ -12,28 +12,33 @@ bd = {"Techmon": Techmon, "Mechamon": Mechamon, "Weirdomon": Weirdomon, "Strange
 
 #definindo as regras para o jogo
 print("AVISO: Para responder a uma pergunta, digite o conteudo dos parênteses nas perguntas")
-
 time.sleep(2)
 
-#carregando jogo salvo
-save = input("Você quer começar um (novo jogo) ou (carregar) um jogo salvo? ")
-save = padroniza(save)
-if save == "Novo Jogo":
-	x = 0
-	print("Iniciando um novo jogo")
-	time.sleep(2)
-	pass
-if save == "Carregar":
-	savedgame = input ("Qual jogo você quer carregar? ")
-	Insperdex = LoadGame(savedgame)[0]
-	inspermon_inicial = LoadGame(savedgame)[1][0]
-	experiencia = int(LoadGame(savedgame)[2][0])
-	x = 1
-	time.sleep(1)
-	print ("Carregando seu jogo")
-	time.sleep(2)
-	print("...")
-	time.sleep(1)
+save_esperado = ["Novo Jogo", "Carregar"]
+while True:
+	#carregando jogo salvo
+	save = input("Você quer começar um (novo jogo) ou (carregar) um jogo salvo? ")
+	save = padroniza(save)
+	if save == "Novo Jogo":
+		x = 0
+		print("Iniciando um novo jogo")
+		time.sleep(2)
+		break
+	if save == "Carregar":
+		savedgame = input ("Qual jogo você quer carregar? ")
+		Insperdex = LoadGame(savedgame)[0]
+		inspermon_inicial = LoadGame(savedgame)[1][0]
+		experiencia = int(LoadGame(savedgame)[2][0])
+		x = 1
+		time.sleep(1)
+		print ("Carregando seu jogo")
+		time.sleep(2)
+		print("...")
+		time.sleep(1)
+		break
+	if save not in save_esperado:
+		print("Desculpa, não entendemos o que você disse")
+		time.sleep(2)
 
 if x == 0:	
 	#apresentando o mundo de inspermun
