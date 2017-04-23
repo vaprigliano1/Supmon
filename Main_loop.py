@@ -3,6 +3,13 @@ import pickle
 import time
 from funcoes_e_classes import *
 from inspermons import *
+import pygame
+from pygame.locals import *
+from pygame.mixer import Sound
+#adicionando musica
+pygame.init()
+pygame.mixer.music.load("po.mp3") 
+pygame.mixer.music.play(-1) 
 
 #criando o dicionário que virará sua Insperdex
 Insperdex = {}
